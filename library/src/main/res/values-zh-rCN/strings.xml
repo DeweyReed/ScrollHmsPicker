@@ -1,0 +1,5 @@
+<resources>
+    <string name="hms_picker_hours_label">时</string>
+    <string name="hms_picker_minutes_label">分</string>
+    <string name="hms_picker_seconds_label">秒</string>
+</resources>

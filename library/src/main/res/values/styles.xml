@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ScrollNumberPickerStyle">
+        <item name="npv_ShowCount">5</item>
+        <item name="npv_ShowDivider">false</item>
+        <item name="npv_WrapSelectorWheel">true</item>
+        <item name="npv_ItemPaddingHorizontal">2dp</item>
+        <item name="npv_TextSizeNormal">@dimen/text_size_normal_item</item>
+        <item name="npv_TextSizeSelected">@dimen/text_size_selected_item</item>
+        <item name="npv_TextColorNormal">@android:color/darker_gray</item>
+        <item name="npv_TextColorSelected">@android:color/holo_red_light</item>
+        <item name="android:requiresFadingEdge">vertical</item>
+        <item name="android:fadingEdgeLength">56dp</item>
+    </style>
+
+    <style name="Label">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">@dimen/text_size_label</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DialogButton" />
+</resources>
