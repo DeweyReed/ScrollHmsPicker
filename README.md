@@ -1,5 +1,5 @@
 # ScrollHmsPicker
-[中文文档](https://github.com/DeweyReed/ScrollHmsPicker/blob/master/README-ZH.md#scrollhmspicker)
+[:cn:](https://github.com/DeweyReed/ScrollHmsPicker/blob/master/README-ZH.md#scrollhmspicker)
 
 A simple HMS time picker with scrolling.
 
