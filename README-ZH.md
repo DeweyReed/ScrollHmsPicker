@@ -19,7 +19,7 @@ allprojects {
 2. 
 ```
 dependencies {
-	implementation 'com.github.DeweyReed:ScrollHmsPicker:1.0.0'
+	implementation 'com.github.DeweyReed:ScrollHmsPicker:$version'
 }
 ```
 [![](https://jitpack.io/v/DeweyReed/ScrollHmsPicker.svg)](https://jitpack.io/#DeweyReed/ScrollHmsPicker)
