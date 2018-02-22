@@ -15,7 +15,7 @@
         app:npv_TextArray="@array/array_0to23"
         app:npv_WrapSelectorWheel="false" />
 
-    <io.github.deweyreed.scrollhmspicker.ZeroTopPaddingTextView
+    <TextView
         android:id="@+id/textHours"
         style="@style/Label"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         app:npv_MinValue="0"
         app:npv_TextArray="@array/array_0to59" />
 
-    <io.github.deweyreed.scrollhmspicker.ZeroTopPaddingTextView
+    <TextView
         android:id="@+id/textMinutes"
         style="@style/Label"
         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
         app:npv_MinValue="0"
         app:npv_TextArray="@array/array_0to59" />
 
-    <io.github.deweyreed.scrollhmspicker.ZeroTopPaddingTextView
+    <TextView
         android:id="@+id/textSeconds"
         style="@style/Label"
         android:layout_width="wrap_content"

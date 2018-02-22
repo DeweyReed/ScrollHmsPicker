@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 
 @Suppress("unused")
 /**
@@ -23,11 +24,11 @@ class ScrollHmsPicker @JvmOverloads constructor(
         defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
     private val pickerHours: NumberPickerView
-    private val textHours: ZeroTopPaddingTextView
+    private val textHours: TextView
     private val pickerMinutes: NumberPickerView
-    private val textMinutes: ZeroTopPaddingTextView
+    private val textMinutes: TextView
     private val pickerSeconds: NumberPickerView
-    private val textSeconds: ZeroTopPaddingTextView
+    private val textSeconds: TextView
 
     private var autoStep: Boolean = false
 
@@ -96,7 +97,6 @@ class ScrollHmsPicker @JvmOverloads constructor(
                 - res.getDimension(R.dimen.text_size_label)) / 2).toInt()
 
         arrayOf(textHours, textMinutes, textSeconds).forEach {
-            it.updatePaddingForBoldDate()
             it.setTextColor(colorSelected)
             // align texts to the bottom of the selected text
             it.layoutParams = (it.layoutParams as LinearLayout.LayoutParams).also {
