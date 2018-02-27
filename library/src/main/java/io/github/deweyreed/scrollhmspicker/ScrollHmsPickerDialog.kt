@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 
 /**
@@ -58,7 +59,10 @@ class ScrollHmsPickerDialog : DialogFragment() {
                 dismiss()
             }
         }
-        dialog?.window?.setBackgroundDrawableResource(colorBackground)
+        dialog?.run {
+            window?.setBackgroundDrawableResource(colorBackground)
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+        }
         return view
     }
 
