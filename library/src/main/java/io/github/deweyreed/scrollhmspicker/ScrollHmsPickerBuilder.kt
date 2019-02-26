@@ -1,16 +1,18 @@
 package io.github.deweyreed.scrollhmspicker
 
 import android.content.DialogInterface
-import android.support.annotation.ColorRes
-import android.support.v4.app.FragmentManager
+import androidx.annotation.ColorRes
+import androidx.fragment.app.FragmentManager
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 /**
  * Created on 2018/2/14.
  */
 
-class ScrollHmsPickerBuilder(private val fragmentManager: FragmentManager,
-                             private val pickListener: ScrollHmsPickerDialog.HmsPickHandler) {
+class ScrollHmsPickerBuilder(
+    private val fragmentManager: FragmentManager,
+    private val pickListener: ScrollHmsPickerDialog.HmsPickHandler
+) {
     private var reference: Int = -1
     private var hours: Int = 0
     private var minutes: Int = 0
@@ -46,9 +48,10 @@ class ScrollHmsPickerBuilder(private val fragmentManager: FragmentManager,
 
     fun setAutoStep(b: Boolean): ScrollHmsPickerBuilder = apply { autoStep = b }
 
-    fun setDismissListener(listener: DialogInterface.OnDismissListener): ScrollHmsPickerBuilder = apply {
-        dismissListener = listener
-    }
+    fun setDismissListener(listener: DialogInterface.OnDismissListener): ScrollHmsPickerBuilder =
+        apply {
+            dismissListener = listener
+        }
 
     fun setColorBackground(@ColorRes id: Int): ScrollHmsPickerBuilder = apply {
         colorBackground = id

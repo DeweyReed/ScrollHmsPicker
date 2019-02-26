@@ -4,14 +4,14 @@ import android.content.Context
 import android.graphics.Typeface
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 
 @Suppress("unused")
 /**
@@ -19,9 +19,9 @@ import android.widget.TextView
  */
 
 class ScrollHmsPicker @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
     private val pickerHours: NumberPickerView
     private val textHours: TextView
@@ -52,10 +52,14 @@ class ScrollHmsPicker @JvmOverloads constructor(
 
         val ta = context.obtainStyledAttributes(attrs, R.styleable.ScrollHmsPicker)
 
-        val colorNormal = ta.getColor(R.styleable.ScrollHmsPicker_shp_normal_color,
-                color(android.R.color.darker_gray))
-        @ColorInt val colorSelected = ta.getColor(R.styleable.ScrollHmsPicker_shp_selected_color,
-                color(android.R.color.holo_red_light))
+        val colorNormal = ta.getColor(
+            R.styleable.ScrollHmsPicker_shp_normal_color,
+            color(android.R.color.darker_gray)
+        )
+        @ColorInt val colorSelected = ta.getColor(
+            R.styleable.ScrollHmsPicker_shp_selected_color,
+            color(android.R.color.holo_red_light)
+        )
         val hours = ta.getInteger(R.styleable.ScrollHmsPicker_shp_hours, 0)
         val minutes = ta.getInteger(R.styleable.ScrollHmsPicker_shp_minutes, 0)
         val seconds = ta.getInteger(R.styleable.ScrollHmsPicker_shp_seconds, 0)
@@ -96,10 +100,10 @@ class ScrollHmsPicker @JvmOverloads constructor(
         val textMarginTop = ((res.getDimension(R.dimen.text_size_selected_item)
                 - res.getDimension(R.dimen.text_size_label)) / 2).toInt()
 
-        arrayOf(textHours, textMinutes, textSeconds).forEach {
-            it.setTextColor(colorSelected)
+        arrayOf(textHours, textMinutes, textSeconds).forEach { view ->
+            view.setTextColor(colorSelected)
             // align texts to the bottom of the selected text
-            it.layoutParams = (it.layoutParams as LinearLayout.LayoutParams).also {
+            view.layoutParams = (view.layoutParams as LinearLayout.LayoutParams).also {
                 it.topMargin = textMarginTop
             }
         }
@@ -164,12 +168,14 @@ class ScrollHmsPicker @JvmOverloads constructor(
 //        }
     }
 
-    override fun onSaveInstanceState(): Parcelable = SavedState(super.onSaveInstanceState())
-            .also { state ->
-                state.hours = hours
-                state.minutes = minutes
-                state.seconds = seconds
-            }
+    override fun onSaveInstanceState(): Parcelable {
+        val parent = super.onSaveInstanceState()
+        return (if (parent != null) SavedState(parent) else SavedState()).also { state ->
+            state.hours = hours
+            state.minutes = minutes
+            state.seconds = seconds
+        }
+    }
 
     override fun onRestoreInstanceState(state: Parcelable?) {
         if (state is SavedState) {
@@ -186,6 +192,8 @@ class ScrollHmsPicker @JvmOverloads constructor(
         var hours: Int = 0
         var minutes: Int = 0
         var seconds: Int = 0
+
+        constructor() : super(Parcel.obtain())
 
         constructor(superState: Parcelable) : super(superState)
 
@@ -207,7 +215,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         }
 
         private companion object {
-            @JvmStatic
+            @JvmField
             val CREATOR = object : Parcelable.Creator<SavedState> {
                 override fun createFromParcel(source: Parcel?): SavedState = SavedState(source)
 

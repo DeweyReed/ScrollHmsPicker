@@ -2,14 +2,14 @@ package io.github.deweyreed.scrollhmspicker
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.annotation.ColorRes
-import android.support.v4.app.DialogFragment
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 
 /**
  * Created on 2018/2/14.

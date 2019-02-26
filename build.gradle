@@ -27,7 +27,7 @@ ext {
     min_sdk_version = 14
     target_sdk_version = 28
 
-    support_version = '28.0.0'
+    appcompat_version = '1.0.2'
 }
 
 task clean(type: Delete) {

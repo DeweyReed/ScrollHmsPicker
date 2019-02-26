@@ -2,9 +2,9 @@ package io.github.deweyreed.scrollhmspicker.sample
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.github.deweyreed.scrollhmspicker.ScrollHmsPickerBuilder
 import io.github.deweyreed.scrollhmspicker.ScrollHmsPickerDialog
 import kotlinx.android.synthetic.main.activity_main.*

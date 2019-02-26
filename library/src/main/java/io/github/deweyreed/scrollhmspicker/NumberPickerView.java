@@ -9,7 +9,6 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.support.v4.widget.ScrollerCompat;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -17,6 +16,8 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+
+import androidx.core.widget.ScrollerCompat;
 
 /**
  * Created by Carbs.Wang.
@@ -422,8 +423,6 @@ class NumberPickerView extends View {
                 defaultValue = getValue() - mMinValue;
             } else if (mCurrentItemIndexEffect) {
                 defaultValue = mCurrDrawFirstItemIndex + (mShowCount - 1) / 2;
-            } else {
-                defaultValue = 0;
             }
         }
         correctPositionByDefaultValue(defaultValue, mWrapSelectorWheel && mWrapSelectorWheelCheck);
@@ -887,7 +886,7 @@ class NumberPickerView extends View {
     public void setFriction(float friction) {
         if (friction <= 0)
             throw new IllegalArgumentException("you should set a a positive float friction, now friction is " + friction);
-        mFriction = ViewConfiguration.get(getContext()).getScrollFriction() / friction;
+        mFriction = ViewConfiguration.getScrollFriction() / friction;
     }
 
     //compatible for NumberPicker
