@@ -4,11 +4,10 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import io.github.deweyreed.scrollhmspicker.ScrollHmsPickerBuilder
 import io.github.deweyreed.scrollhmspicker.ScrollHmsPickerDialog
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), ScrollHmsPickerDialog.HmsPickHandler {
 
@@ -20,16 +19,16 @@ class MainActivity : AppCompatActivity(), ScrollHmsPickerDialog.HmsPickHandler {
         }
         btnCustomDialog.setOnClickListener {
             ScrollHmsPickerBuilder(supportFragmentManager, this)
-                    .setReference(255)
-                    .setTime(1, 23, 45)
-                    .setAutoStep(true)
-                    .setColorNormal(android.R.color.holo_blue_light)
-                    .setColorSelected(android.R.color.black)
-                    .setColorBackground(android.R.color.holo_orange_light)
-                    .setDismissListener(DialogInterface.OnDismissListener {
-                        toast("Dismiss")
-                    })
-                    .show()
+                .setReference(255)
+                .setTime(1, 23, 45)
+                .setAutoStep(true)
+                .setColorNormal(android.R.color.holo_blue_light)
+                .setColorSelected(android.R.color.black)
+                .setColorBackground(android.R.color.holo_orange_light)
+                .setDismissListener(DialogInterface.OnDismissListener {
+                    Toast.makeText(this, "Dismiss", Toast.LENGTH_SHORT).show()
+                })
+                .show()
         }
         var isShown = false
         btnXml.setOnClickListener {
@@ -40,12 +39,18 @@ class MainActivity : AppCompatActivity(), ScrollHmsPickerDialog.HmsPickHandler {
             }
         }
         btnGetTime.setOnClickListener {
-            onHmsPick(-1,
-                    scrollHmsPicker.hours, scrollHmsPicker.minutes, scrollHmsPicker.seconds)
+            onHmsPick(
+                -1,
+                scrollHmsPicker.hours, scrollHmsPicker.minutes, scrollHmsPicker.seconds
+            )
         }
     }
 
     override fun onHmsPick(reference: Int, hours: Int, minutes: Int, seconds: Int) {
-        longToast("reference: $reference, hours: $hours, minutes: $minutes, seconds: $seconds")
+        Toast.makeText(
+            this,
+            "reference: $reference, hours: $hours, minutes: $minutes, seconds: $seconds",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
