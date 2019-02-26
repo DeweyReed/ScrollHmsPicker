@@ -1,6 +1,5 @@
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-ScrollHmsPicker-green.svg?style=flat)]( https://android-arsenal.com/details/1/6805)
 [![Newest version](https://jitpack.io/v/DeweyReed/ScrollHmsPicker.svg)](https://jitpack.io/#DeweyReed/ScrollHmsPicker)
-[![Translation-ZH](https://img.shields.io/badge/Translation-%E4%B8%AD%E6%96%87-red.svg)](https://github.com/DeweyReed/ScrollHmsPicker/blob/master/README-ZH.md#scrollhmspicker)
 
 # ScrollHmsPicker
 
@@ -34,6 +33,8 @@ dependencies {
     implementation 'com.github.DeweyReed:ScrollHmsPicker:$version'
 }
 ```
+
+**2.X.X requires AndroidX. 1.0.3 is the last version using the support library.**
 
 ## Usage
 
