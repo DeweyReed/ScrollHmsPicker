@@ -65,20 +65,29 @@ class ScrollHmsPicker @JvmOverloads constructor(
         val minutes = ta.getInteger(R.styleable.ScrollHmsPicker_shp_minutes, 0)
         val seconds = ta.getInteger(R.styleable.ScrollHmsPicker_shp_seconds, 0)
         val autoStep = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_auto_step, false)
+
+        val showHours = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_hours, true)
+        val showMinutes = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_minutes, true)
+        val showSeconds = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_seconds, true)
         ta.recycle()
 
         pickerHours = findViewById<NumberPickerView>(R.id.pickerHours).apply {
             maxValue = 23
         }
         textHours = findViewById(R.id.textHours)
+        setHoursVisibility(showHours)
+
         pickerMinutes = findViewById<NumberPickerView>(R.id.pickerMinutes).apply {
             maxValue = 59
         }
         textMinutes = findViewById(R.id.textMinutes)
+        setMinutesVisibility(showMinutes)
+
         pickerSeconds = findViewById<NumberPickerView>(R.id.pickerSeconds).apply {
             maxValue = 59
         }
         textSeconds = findViewById(R.id.textSeconds)
+        setSecondsVisibility(showSeconds)
 
         setSafeHours(hours)
         setSafeMinutes(minutes)
@@ -147,6 +156,24 @@ class ScrollHmsPicker @JvmOverloads constructor(
                 pickerSeconds.setOnValueChangeListenerInScrolling(null)
             }
         }
+    }
+
+    fun setHoursVisibility(show: Boolean) {
+        val visibility = if (show) VISIBLE else GONE
+        pickerHours.visibility = visibility
+        textHours.visibility = visibility
+    }
+
+    fun setMinutesVisibility(show: Boolean) {
+        val visibility = if (show) VISIBLE else GONE
+        pickerMinutes.visibility = visibility
+        textMinutes.visibility = visibility
+    }
+
+    fun setSecondsVisibility(show: Boolean) {
+        val visibility = if (show) VISIBLE else GONE
+        pickerSeconds.visibility = visibility
+        textSeconds.visibility = visibility
     }
 
     private fun setSafeHours(hours: Int) {

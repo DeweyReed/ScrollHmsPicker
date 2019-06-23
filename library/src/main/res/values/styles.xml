@@ -2,7 +2,7 @@
 <resources>
 
     <style name="ScrollNumberPickerStyle">
-        <item name="npv_ShowCount">5</item>
+        <item name="npv_ShownCount">5</item>
         <item name="npv_ShowDivider">false</item>
         <item name="npv_WrapSelectorWheel">true</item>
         <item name="npv_ItemPaddingHorizontal">2dp</item>

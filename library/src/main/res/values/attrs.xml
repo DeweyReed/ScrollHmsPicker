@@ -7,5 +7,8 @@
         <attr name="shp_minutes" format="integer" />
         <attr name="shp_seconds" format="integer" />
         <attr name="shp_auto_step" format="boolean" />
+        <attr name="shp_show_hours" format="boolean" />
+        <attr name="shp_show_minutes" format="boolean" />
+        <attr name="shp_show_seconds" format="boolean" />
     </declare-styleable>
 </resources>

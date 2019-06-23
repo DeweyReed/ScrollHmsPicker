@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         app:npv_MaxValue="23"
         app:npv_MinValue="0"
-        app:npv_ShownCount="5"
         app:npv_TextArray="@array/array_0to23"
         app:npv_WrapSelectorWheel="false" />
 
@@ -33,7 +32,6 @@
         android:layout_height="wrap_content"
         app:npv_MaxValue="59"
         app:npv_MinValue="0"
-        app:npv_ShownCount="5"
         app:npv_TextArray="@array/array_0to59" />
 
     <TextView
@@ -53,7 +51,6 @@
         android:layout_height="wrap_content"
         app:npv_MaxValue="59"
         app:npv_MinValue="0"
-        app:npv_ShownCount="5"
         app:npv_TextArray="@array/array_0to59" />
 
     <TextView
