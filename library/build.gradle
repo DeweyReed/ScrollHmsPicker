@@ -3,8 +3,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.DeweyReed'
-
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
     defaultConfig {
