@@ -10,5 +10,6 @@
         <attr name="shp_show_hours" format="boolean" />
         <attr name="shp_show_minutes" format="boolean" />
         <attr name="shp_show_seconds" format="boolean" />
+        <attr name="shp_enable_99_hours" format="boolean" />
     </declare-styleable>
 </resources>

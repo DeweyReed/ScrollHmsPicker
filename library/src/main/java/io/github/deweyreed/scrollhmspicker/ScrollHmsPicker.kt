@@ -69,6 +69,8 @@ class ScrollHmsPicker @JvmOverloads constructor(
         val showHours = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_hours, true)
         val showMinutes = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_minutes, true)
         val showSeconds = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_seconds, true)
+
+        val enable99Hours = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_enable_99_hours, false)
         ta.recycle()
 
         pickerHours = findViewById<NumberPickerView>(R.id.pickerHours).apply {
@@ -88,6 +90,8 @@ class ScrollHmsPicker @JvmOverloads constructor(
         }
         textSeconds = findViewById(R.id.textSeconds)
         setSecondsVisibility(showSeconds)
+
+        set99Hours(enable99Hours)
 
         setSafeHours(hours)
         setSafeMinutes(minutes)
@@ -174,6 +178,10 @@ class ScrollHmsPicker @JvmOverloads constructor(
         val visibility = if (show) VISIBLE else GONE
         pickerSeconds.visibility = visibility
         textSeconds.visibility = visibility
+    }
+
+    fun set99Hours(enable: Boolean) {
+        pickerHours.setMinAndMaxShowIndex(0, if (enable) 99 else 23)
     }
 
     private fun setSafeHours(hours: Int) {
