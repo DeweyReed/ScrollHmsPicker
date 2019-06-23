@@ -72,7 +72,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         ta.recycle()
 
         pickerHours = findViewById<NumberPickerView>(R.id.pickerHours).apply {
-            maxValue = 23
+            maxValue = 99
         }
         textHours = findViewById(R.id.textHours)
         setHoursVisibility(showHours)
@@ -141,7 +141,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
             if (autoStep) {
                 pickerMinutes.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
                     val hoursVal = pickerHours.value
-                    if (oldVal == 59 && newVal == 0 && hoursVal < 24) {
+                    if (oldVal == 59 && newVal == 0 && hoursVal < 99) {
                         pickerHours.smoothScrollToValue(hoursVal + 1)
                     }
                 }
@@ -177,7 +177,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
     }
 
     private fun setSafeHours(hours: Int) {
-        if (hours in 0..23) scrollToValue(pickerHours, hours)
+        if (hours in 0..99) scrollToValue(pickerHours, hours)
     }
 
     private fun setSafeMinutes(minutes: Int) {

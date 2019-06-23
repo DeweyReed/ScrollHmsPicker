@@ -10,10 +10,9 @@
         style="@style/ScrollNumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:npv_MaxValue="23"
+        app:npv_MaxValue="99"
         app:npv_MinValue="0"
-        app:npv_TextArray="@array/array_0to23"
-        app:npv_WrapSelectorWheel="false" />
+        app:npv_TextArray="@array/array_0to99" />
 
     <TextView
         android:id="@+id/textHours"
