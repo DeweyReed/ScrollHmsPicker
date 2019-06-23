@@ -15,6 +15,9 @@ import androidx.fragment.app.DialogFragment
  * Created on 2018/2/14.
  */
 
+@Deprecated(
+    message = "This dialog doesn't handle configuration changes. Wrap ScrollHmsPicker in your own dialog."
+)
 class ScrollHmsPickerDialog : DialogFragment() {
     interface HmsPickHandler {
         fun onHmsPick(reference: Int, hours: Int, minutes: Int, seconds: Int)

@@ -9,6 +9,9 @@ import androidx.fragment.app.FragmentManager
  * Created on 2018/2/14.
  */
 
+@Deprecated(
+    message = "This dialog doesn't handle configuration changes. Wrap ScrollHmsPicker in your own dialog."
+)
 class ScrollHmsPickerBuilder(
     private val fragmentManager: FragmentManager,
     private val pickListener: ScrollHmsPickerDialog.HmsPickHandler
