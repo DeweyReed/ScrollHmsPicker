@@ -32,11 +32,15 @@ class ScrollHmsPickerDialog : DialogFragment() {
     @ColorRes
     var colorBackground: Int = android.R.color.white
     var dismissListener: DialogInterface.OnDismissListener? = null
-    var pickListener: ScrollHmsPickerDialog.HmsPickHandler? = null
+    var pickListener: HmsPickHandler? = null
 
     private lateinit var hmsPicker: ScrollHmsPicker
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_picker_dialog, container, false)
         hmsPicker = view.findViewById<ScrollHmsPicker>(R.id.hms_picker).also { picker ->
             picker.hours = hours
@@ -54,8 +58,10 @@ class ScrollHmsPickerDialog : DialogFragment() {
         view.findViewById<Button>(R.id.button_ok).apply {
             setTextColor(textColor)
             setOnClickListener {
-                pickListener?.onHmsPick(reference,
-                        hmsPicker.hours, hmsPicker.minutes, hmsPicker.seconds)
+                pickListener?.onHmsPick(
+                    reference,
+                    hmsPicker.hours, hmsPicker.minutes, hmsPicker.seconds
+                )
                 dismiss()
             }
         }

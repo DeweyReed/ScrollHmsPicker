@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import cn.carbswang.android.numberpickerview.library.NumberPickerView
 
 @Suppress("unused")
 /**
@@ -45,7 +46,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         set(value) = setSafeSeconds(value)
 
     init {
-        orientation = LinearLayout.HORIZONTAL
+        orientation = HORIZONTAL
         LayoutInflater.from(context).inflate(R.layout.layout_scrollhmspicker, this)
 
         val res = resources
@@ -103,7 +104,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         arrayOf(textHours, textMinutes, textSeconds).forEach { view ->
             view.setTextColor(colorSelected)
             // align texts to the bottom of the selected text
-            view.layoutParams = (view.layoutParams as LinearLayout.LayoutParams).also {
+            view.layoutParams = (view.layoutParams as LayoutParams).also {
                 it.topMargin = textMarginTop
             }
         }
@@ -188,7 +189,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         }
     }
 
-    private class SavedState : View.BaseSavedState {
+    private class SavedState : BaseSavedState {
         var hours: Int = 0
         var minutes: Int = 0
         var seconds: Int = 0
@@ -224,5 +225,5 @@ class ScrollHmsPicker @JvmOverloads constructor(
         }
     }
 
-    fun View.color(@ColorRes id: Int) = ContextCompat.getColor(this.context, id)
+    private fun View.color(@ColorRes id: Int) = ContextCompat.getColor(this.context, id)
 }
