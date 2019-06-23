@@ -38,8 +38,6 @@ dependencies {
 
 ## Usage
 
-### XML
-
 ```XML
 <io.github.deweyreed.scrollhmspicker.ScrollHmsPicker
     android:id="@+id/scrollHmsPicker"
@@ -48,36 +46,6 @@ dependencies {
 ```
 
 Then, use `scrollHmsPicker.getHours()` to get users' input.
-
-### Show a dialog fragment
-
-Implement `ScrollHmsPickerDialog.HmsPickHandler` for your activity or whatever.
-
-```Kotlin
-class MainActivity : AppCompatActivity(), ScrollHmsPickerDialog.HmsPickHandler {
-```
-
-```Kotlin
-override fun onHmsPick(reference: Int, hours: Int, minutes: Int, seconds: Int) {
-    longToast("reference: $reference, hours: $hours, minutes: $minutes, seconds: $seconds")
-}
-```
-
-Then, build it.
-
-```Kotlin
-ScrollHmsPickerBuilder(supportFragmentManager, this)
-    .setReference(255)
-    .setTime(1, 23, 45)
-    .setAutoStep(true)
-    .setColorNormal(android.R.color.holo_blue_light)
-    .setColorSelected(android.R.color.black)
-    .setColorBackground(android.R.color.holo_orange_light)
-    .setDismissListener(DialogInterface.OnDismissListener {
-        toast("Dismiss")
-    })
-    .show()
-```
 
 ## Attributes
 
@@ -89,6 +57,10 @@ ScrollHmsPickerBuilder(supportFragmentManager, this)
 |setColorNormal|shp_normal_color|android.R.color.darker_gray(color resource)|set picker's not selected text color|
 |setColorSelected|shp_selected_color|android.R.color.holo_red_light(color resource)|set picker's selected text color|
 |setAutoStep|shp_auto_step|false(Boolean)|let picker automatically increment 1 minute if seconds move from 59 to 00 or increment 1 hour if minutes move from 59 to 00|
+|setHoursVisibility|shp_show_hours|`true`|set hours picker visibility|
+|setMinutesVisibility|shp_show_minutes|`true`|set minutes picker visibility|
+|setSecondsVisibility|shp_show_seconds|`true`|set seconds picker visibility|
+|set99Hours|shp_enable_99_hours|`false`|Change max hours from 23 to 99|
 
 ## License
 
