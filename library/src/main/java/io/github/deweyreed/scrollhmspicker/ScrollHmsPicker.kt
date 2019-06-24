@@ -124,18 +124,25 @@ class ScrollHmsPicker @JvmOverloads constructor(
     }
 
     fun setColorNormal(@ColorRes res: Int) {
+        setColorIntNormal(color(res))
+    }
+
+    fun setColorIntNormal(@ColorInt color: Int) {
         arrayOf(pickerHours, pickerMinutes, pickerSeconds).forEach {
-            it.setNormalTextColor(color(res))
+            it.setNormalTextColor(color)
         }
     }
 
     fun setColorSelected(@ColorRes res: Int) {
-        val colorInt = color(res)
+        setColorIntSelected(color(res))
+    }
+
+    fun setColorIntSelected(@ColorInt color: Int) {
         arrayOf(pickerHours, pickerMinutes, pickerSeconds).forEach {
-            it.setSelectedTextColor(colorInt)
+            it.setSelectedTextColor(color)
         }
         arrayOf(textHours, textMinutes, textSeconds).forEach {
-            it.setTextColor(colorInt)
+            it.setTextColor(color)
         }
     }
 
