@@ -24,14 +24,14 @@
 
         <Button
             android:id="@+id/button_cancel"
-            style="@style/DialogButton"
+            style="@style/Shp.DialogButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@android:string/cancel" />
 
         <Button
             android:id="@+id/button_ok"
-            style="@style/DialogButton"
+            style="@style/Shp.DialogButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@android:string/ok" />

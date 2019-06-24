@@ -7,57 +7,57 @@
 
     <cn.carbswang.android.numberpickerview.library.NumberPickerView
         android:id="@+id/pickerHours"
-        style="@style/ScrollNumberPickerStyle"
+        style="@style/Shp.ScrollNumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:npv_MaxValue="99"
         app:npv_MinValue="0"
-        app:npv_TextArray="@array/array_0to99" />
+        app:npv_TextArray="@array/shp_0to99" />
 
     <TextView
         android:id="@+id/textHours"
-        style="@style/Label"
+        style="@style/Shp.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:text="@string/scroll_hms_picker_hours_label" />
+        android:text="@string/shp_hours_label" />
 
     <cn.carbswang.android.numberpickerview.library.NumberPickerView
         android:id="@+id/pickerMinutes"
-        style="@style/ScrollNumberPickerStyle"
+        style="@style/Shp.ScrollNumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:npv_MaxValue="59"
         app:npv_MinValue="0"
-        app:npv_TextArray="@array/array_0to59" />
+        app:npv_TextArray="@array/shp_0to59" />
 
     <TextView
         android:id="@+id/textMinutes"
-        style="@style/Label"
+        style="@style/Shp.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:text="@string/scroll_hms_picker_minutes_label" />
+        android:text="@string/shp_minutes_label" />
 
     <cn.carbswang.android.numberpickerview.library.NumberPickerView
         android:id="@+id/pickerSeconds"
-        style="@style/ScrollNumberPickerStyle"
+        style="@style/Shp.ScrollNumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:npv_MaxValue="59"
         app:npv_MinValue="0"
-        app:npv_TextArray="@array/array_0to59" />
+        app:npv_TextArray="@array/shp_0to59" />
 
     <TextView
         android:id="@+id/textSeconds"
-        style="@style/Label"
+        style="@style/Shp.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="@string/scroll_hms_picker_seconds_label" />
+        android:text="@string/shp_seconds_label" />
 
 </LinearLayout>

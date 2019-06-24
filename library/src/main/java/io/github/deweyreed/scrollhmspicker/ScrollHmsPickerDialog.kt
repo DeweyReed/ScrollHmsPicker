@@ -44,7 +44,7 @@ class ScrollHmsPickerDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_picker_dialog, container, false)
+        val view = inflater.inflate(R.layout.shp_picker_dialog, container, false)
         hmsPicker = view.findViewById<ScrollHmsPicker>(R.id.hms_picker).also { picker ->
             picker.hours = hours
             picker.minutes = minutes

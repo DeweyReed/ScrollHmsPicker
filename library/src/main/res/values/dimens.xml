@@ -2,7 +2,7 @@
 <resources>
     <!-- use dp instead of sp to avoid UI not fully shown
     if users use big system font size-->
-    <dimen name="text_size_normal_item">36dp</dimen>
-    <dimen name="text_size_selected_item">52dp</dimen>
-    <dimen name="text_size_label">20dp</dimen>
+    <dimen name="shp_text_size_normal_item">36dp</dimen>
+    <dimen name="shp_text_size_selected_item">52dp</dimen>
+    <dimen name="shp_text_size_label">20dp</dimen>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="ScrollHmsPicker">
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="ScrollHmsPicker" tools:ignore="ResourceName">
         <attr name="shp_normal_color" format="color" />
         <attr name="shp_selected_color" format="color" />
         <attr name="shp_hours" format="integer" />

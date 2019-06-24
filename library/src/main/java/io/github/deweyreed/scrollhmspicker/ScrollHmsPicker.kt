@@ -48,7 +48,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
 
     init {
         orientation = HORIZONTAL
-        LayoutInflater.from(context).inflate(R.layout.layout_scrollhmspicker, this)
+        LayoutInflater.from(context).inflate(R.layout.shp_scrollhmspicker, this)
 
         val res = resources
 
@@ -111,8 +111,8 @@ class ScrollHmsPicker @JvmOverloads constructor(
         //          |         ---->  move label to the bottom of selected item
         // ---------|                padding == (selected size - label size) / 2
         //
-        val textMarginTop = ((res.getDimension(R.dimen.text_size_selected_item)
-                - res.getDimension(R.dimen.text_size_label)) / 2).toInt()
+        val textMarginTop = ((res.getDimension(R.dimen.shp_text_size_selected_item)
+                - res.getDimension(R.dimen.shp_text_size_label)) / 2).toInt()
 
         arrayOf(textHours, textMinutes, textSeconds).forEach { view ->
             view.setTextColor(colorSelected)
@@ -160,7 +160,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
                 }
                 pickerSeconds.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
                     val minutesVal = pickerMinutes.value
-                    if (oldVal == 59 && newVal == 0 && minutesVal < 60) {
+                    if (oldVal == 59 && newVal == 0) {
                         pickerMinutes.smoothScrollToValue((minutesVal + 1) % 60)
                     } else if (oldVal == 0 && newVal == 59) {
                         pickerMinutes.smoothScrollToValue(if (minutesVal > 0) minutesVal - 1 else 59)

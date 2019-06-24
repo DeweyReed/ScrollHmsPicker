@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="array_0to59">
+    <string-array name="shp_0to59">
         <item>00</item>
         <item>01</item>
         <item>02</item>
@@ -63,7 +63,7 @@
         <item>59</item>
     </string-array>
 
-    <string-array name="array_0to99">
+    <string-array name="shp_0to99">
         <item>00</item>
         <item>01</item>
         <item>02</item>
