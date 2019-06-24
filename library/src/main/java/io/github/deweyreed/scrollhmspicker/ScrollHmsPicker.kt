@@ -32,6 +32,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
     private val textSeconds: TextView
 
     private var autoStep: Boolean = false
+    private var enable99Hours = false
 
     var hours: Int
         get() = pickerHours.value
@@ -70,7 +71,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         val showMinutes = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_minutes, true)
         val showSeconds = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_show_seconds, true)
 
-        val enable99Hours = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_enable_99_hours, false)
+        enable99Hours = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_enable_99_hours, false)
         ta.recycle()
 
         pickerHours = findViewById<NumberPickerView>(R.id.pickerHours).apply {
@@ -78,6 +79,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         }
         textHours = findViewById(R.id.textHours)
         setHoursVisibility(showHours)
+        set99Hours(enable99Hours)
 
         pickerMinutes = findViewById<NumberPickerView>(R.id.pickerMinutes).apply {
             maxValue = 59
@@ -90,8 +92,6 @@ class ScrollHmsPicker @JvmOverloads constructor(
         }
         textSeconds = findViewById(R.id.textSeconds)
         setSecondsVisibility(showSeconds)
-
-        set99Hours(enable99Hours)
 
         setSafeHours(hours)
         setSafeMinutes(minutes)
@@ -145,14 +145,18 @@ class ScrollHmsPicker @JvmOverloads constructor(
             if (autoStep) {
                 pickerMinutes.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
                     val hoursVal = pickerHours.value
-                    if (oldVal == 59 && newVal == 0 && hoursVal < 99) {
-                        pickerHours.smoothScrollToValue(hoursVal + 1)
+                    if (oldVal == 59 && newVal == 0) {
+                        pickerHours.smoothScrollToValue((hoursVal + 1) % (if (enable99Hours) 100 else 24))
+                    } else if (oldVal == 0 && newVal == 59) {
+                        pickerHours.smoothScrollToValue(if (hoursVal > 0) hoursVal - 1 else ((if (enable99Hours) 99 else 23)))
                     }
                 }
                 pickerSeconds.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
                     val minutesVal = pickerMinutes.value
                     if (oldVal == 59 && newVal == 0 && minutesVal < 60) {
-                        pickerMinutes.smoothScrollToValue(minutesVal + 1)
+                        pickerMinutes.smoothScrollToValue((minutesVal + 1) % 60)
+                    } else if (oldVal == 0 && newVal == 59) {
+                        pickerMinutes.smoothScrollToValue(if (minutesVal > 0) minutesVal - 1 else 59)
                     }
                 }
             } else {
@@ -181,11 +185,12 @@ class ScrollHmsPicker @JvmOverloads constructor(
     }
 
     fun set99Hours(enable: Boolean) {
+        enable99Hours = enable
         pickerHours.setMinAndMaxShowIndex(0, if (enable) 99 else 23)
     }
 
     private fun setSafeHours(hours: Int) {
-        if (hours in 0..99) scrollToValue(pickerHours, hours)
+        if (hours in 0..(if (enable99Hours) 99 else 23)) scrollToValue(pickerHours, hours)
     }
 
     private fun setSafeMinutes(minutes: Int) {
