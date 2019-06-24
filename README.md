@@ -55,7 +55,9 @@ Then, use `scrollHmsPicker.getHours()` to get users' input.
 |setMinutes|shp_minutes|0(Int)|set picker's minutes|
 |setSeconds|shp_seconds|0(Int)|set picker's seconds|
 |setColorNormal|shp_normal_color|android.R.color.darker_gray(color resource)|set picker's not selected text color|
+|setColorIntNormal|shp_normal_color|-|accepts a color int|
 |setColorSelected|shp_selected_color|android.R.color.holo_red_light(color resource)|set picker's selected text color|
+|setColorIntSelected|shp_selected_color|-|accepts a color int|
 |setAutoStep|shp_auto_step|false(Boolean)|let picker automatically increment 1 minute if seconds move from 59 to 00 or increment 1 hour if minutes move from 59 to 00|
 |setHoursVisibility|shp_show_hours|`true`|set hours picker visibility|
 |setMinutesVisibility|shp_show_minutes|`true`|set minutes picker visibility|
