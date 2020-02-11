@@ -1,5 +1,6 @@
 package io.github.deweyreed.scrollhmspicker.sample
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -17,8 +18,9 @@ class MainActivity : AppCompatActivity() {
                 .setView(R.layout.dialog_picker)
                 .setPositiveButton(android.R.string.yes, null)
                 .show()
+            val picker = dialog.picker
+            picker.setTypeface(Typeface.DEFAULT_BOLD)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                val picker = dialog.picker
                 onHmsPick(picker.hours, picker.minutes, picker.seconds)
                 dialog.dismiss()
             }

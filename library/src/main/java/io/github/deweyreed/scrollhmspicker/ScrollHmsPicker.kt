@@ -14,7 +14,6 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import cn.carbswang.android.numberpickerview.library.NumberPickerView
 
-@Suppress("unused")
 /**
  * Created on 2018/2/13.
  */
@@ -194,6 +193,24 @@ class ScrollHmsPicker @JvmOverloads constructor(
     fun set99Hours(enable: Boolean) {
         enable99Hours = enable
         pickerHours.setMinAndMaxShowIndex(0, if (enable) 99 else 23)
+    }
+
+    fun setTypeface(newTypeface: Typeface) {
+        pickerHours.setContentTextTypeface(newTypeface)
+        pickerHours.setHintTextTypeface(newTypeface)
+        textHours.typeface = newTypeface
+
+        pickerMinutes.setContentTextTypeface(newTypeface)
+        pickerMinutes.setHintTextTypeface(newTypeface)
+        textMinutes.typeface = newTypeface
+
+        pickerSeconds.setContentTextTypeface(newTypeface)
+        pickerSeconds.setHintTextTypeface(newTypeface)
+        textSeconds.typeface = newTypeface
+    }
+
+    fun getTypeface(): Typeface {
+        return textHours.typeface
     }
 
     private fun setSafeHours(hours: Int) {
