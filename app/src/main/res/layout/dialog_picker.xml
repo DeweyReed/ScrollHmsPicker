@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <io.github.deweyreed.scrollhmspicker.ScrollHmsPicker
+        android:id="@+id/picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:shp_auto_step="true"
+        app:shp_enable_99_hours="true"
+        app:shp_normal_color="@android:color/darker_gray"
+        app:shp_selected_color="@android:color/holo_green_dark" />
+
+</FrameLayout>

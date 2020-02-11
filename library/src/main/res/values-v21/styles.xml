@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="Shp.DialogButton" parent="@android:style/Widget.Material.Button.Borderless.Colored" />
-</resources>

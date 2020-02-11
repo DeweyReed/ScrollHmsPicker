@@ -1,55 +1,37 @@
 package io.github.deweyreed.scrollhmspicker.sample
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import io.github.deweyreed.scrollhmspicker.ScrollHmsPickerBuilder
-import io.github.deweyreed.scrollhmspicker.ScrollHmsPickerDialog
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_picker.*
 
-class MainActivity : AppCompatActivity(), ScrollHmsPickerDialog.HmsPickHandler {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btnDialog.setOnClickListener {
-            ScrollHmsPickerBuilder(supportFragmentManager, this).show()
-        }
-        btnCustomDialog.setOnClickListener {
-            ScrollHmsPickerBuilder(supportFragmentManager, this)
-                .setReference(255)
-                .setTime(1, 23, 45)
-                .setAutoStep(true)
-                .setColorNormal(android.R.color.holo_blue_light)
-                .setColorSelected(android.R.color.black)
-                .setColorBackground(android.R.color.holo_orange_light)
-                .setDismissListener(DialogInterface.OnDismissListener {
-                    Toast.makeText(this, "Dismiss", Toast.LENGTH_SHORT).show()
-                })
+            val dialog = AlertDialog.Builder(this)
+                .setView(R.layout.dialog_picker)
+                .setPositiveButton(android.R.string.yes, null)
                 .show()
-        }
-        var isShown = false
-        btnXml.setOnClickListener {
-            val visibility = if (isShown) View.GONE else View.VISIBLE
-            isShown = !isShown
-            arrayOf(scrollHmsPicker, btnGetTime).forEach {
-                it.visibility = visibility
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                val picker = dialog.picker
+                onHmsPick(picker.hours, picker.minutes, picker.seconds)
+                dialog.dismiss()
             }
         }
         btnGetTime.setOnClickListener {
-            onHmsPick(
-                -1,
-                scrollHmsPicker.hours, scrollHmsPicker.minutes, scrollHmsPicker.seconds
-            )
+            onHmsPick(scrollHmsPicker.hours, scrollHmsPicker.minutes, scrollHmsPicker.seconds)
         }
     }
 
-    override fun onHmsPick(reference: Int, hours: Int, minutes: Int, seconds: Int) {
+    private fun onHmsPick(hours: Int, minutes: Int, seconds: Int) {
         Toast.makeText(
             this,
-            "reference: $reference, hours: $hours, minutes: $minutes, seconds: $seconds",
+            "ours: $hours, minutes: $minutes, seconds: $seconds",
             Toast.LENGTH_SHORT
         ).show()
     }
