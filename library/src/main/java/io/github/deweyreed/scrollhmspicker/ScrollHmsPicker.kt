@@ -18,17 +18,17 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView
  * Created on 2018/2/13.
  */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class ScrollHmsPicker @JvmOverloads constructor(
+open class ScrollHmsPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private val pickerHours: NumberPickerView
-    private val textHours: TextView
-    private val pickerMinutes: NumberPickerView
-    private val textMinutes: TextView
-    private val pickerSeconds: NumberPickerView
-    private val textSeconds: TextView
+    protected val pickerHours: NumberPickerView
+    protected val textHours: TextView
+    protected val pickerMinutes: NumberPickerView
+    protected val textMinutes: TextView
+    protected val pickerSeconds: NumberPickerView
+    protected val textSeconds: TextView
 
     private var autoStep: Boolean = false
     private var enable99Hours = false
