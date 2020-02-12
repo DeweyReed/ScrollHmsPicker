@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.min_sdk_version
         targetSdkVersion rootProject.ext.target_sdk_version
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.version_code
+        versionName rootProject.ext.version_name
     }
     resourcePrefix 'shp_'
 }
