@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun onHmsPick(hours: Int, minutes: Int, seconds: Int) {
         Toast.makeText(
             this,
-            "ours: $hours, minutes: $minutes, seconds: $seconds",
+            "hours: $hours, minutes: $minutes, seconds: $seconds",
             Toast.LENGTH_SHORT
         ).show()
     }
