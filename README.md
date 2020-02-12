@@ -7,9 +7,9 @@ A simple HMS time picker with scrolling.
 
 ## Screenshots
 
-| Default Dialog | Theme It! | In the XML |
+| In the XML | In the Dialog |  |
 |:-:|:-:|:-:|
-| ![Default Dialog](https://github.com/DeweyReed/ScrollHmsPicker/blob/master/art/default.png?raw=true) | ![Theme It!](https://github.com/DeweyReed/ScrollHmsPicker/blob/master/art/theme.png?raw=true) | ![In the XML](https://github.com/DeweyReed/ScrollHmsPicker/blob/master/art/xml.png?raw=true) |
+| ![In the XML](art/xml.png) | ![In the Dialog](art/dialog.png) |
 
 ## Install
 
@@ -45,7 +45,7 @@ dependencies {
     android:layout_height="wrap_content" />
 ```
 
-Then, use `scrollHmsPicker.getHours()` to get users' input.
+Then, use `scrollHmsPicker.getHours()` and other getters to get users' input.
 
 ## Attributes
 
@@ -63,6 +63,8 @@ Then, use `scrollHmsPicker.getHours()` to get users' input.
 |setMinutesVisibility|shp_show_minutes|`true`|set minutes picker visibility|
 |setSecondsVisibility|shp_show_seconds|`true`|set seconds picker visibility|
 |set99Hours|shp_enable_99_hours|`false`|Change max hours from 23 to 99|
+|setTypeface|||Set all texts typeface|
+|getTypeface|||Get current text typeface|
 
 ## License
 
