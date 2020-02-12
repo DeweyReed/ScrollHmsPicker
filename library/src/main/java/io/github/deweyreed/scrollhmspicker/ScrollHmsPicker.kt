@@ -17,7 +17,7 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView
 /**
  * Created on 2018/2/13.
  */
-
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class ScrollHmsPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
