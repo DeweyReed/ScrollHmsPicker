@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="shp_hours_label">घं.</string>
+    <string name="shp_minutes_label">मि.</string>
+    <string name="shp_seconds_label">से.</string>
+</resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="shp_hours_label">h</string>
+    <string name="shp_hours_label">g</string>
     <string name="shp_minutes_label">m</string>
     <string name="shp_seconds_label">s</string>
 </resources>

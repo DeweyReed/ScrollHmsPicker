@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="shp_hours_label">时</string>
+    <string name="shp_hours_label">時</string>
     <string name="shp_minutes_label">分</string>
     <string name="shp_seconds_label">秒</string>
 </resources>
