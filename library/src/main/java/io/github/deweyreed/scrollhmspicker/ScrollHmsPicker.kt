@@ -8,46 +8,46 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import cn.carbswang.android.numberpickerview.library.NumberPickerView
+import io.github.deweyreed.scrollhmspicker.databinding.ShpScrollhmspickerBinding
 
 /**
  * Created on 2018/2/13.
  */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-open class ScrollHmsPicker @JvmOverloads constructor(
+class ScrollHmsPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    protected val pickerHours: NumberPickerView
-    protected val textHours: TextView
-    protected val pickerMinutes: NumberPickerView
-    protected val textMinutes: TextView
-    protected val pickerSeconds: NumberPickerView
-    protected val textSeconds: TextView
+    private val binding =
+        ShpScrollhmspickerBinding.inflate(LayoutInflater.from(context), this)
+
+    private val allPickers =
+        listOf(binding.pickerHours, binding.pickerMinutes, binding.pickerSeconds)
+
+    private val allTexts =
+        listOf(binding.textHours, binding.textMinutes, binding.textSeconds)
 
     private var autoStep: Boolean = false
     private var enable99Hours = false
 
     var hours: Int
-        get() = pickerHours.value
+        get() = binding.pickerHours.value
         set(value) = setSafeHours(value)
 
     var minutes: Int
-        get() = pickerMinutes.value
+        get() = binding.pickerMinutes.value
         set(value) = setSafeMinutes(value)
 
     var seconds: Int
-        get() = pickerSeconds.value
+        get() = binding.pickerSeconds.value
         set(value) = setSafeSeconds(value)
 
     init {
         orientation = HORIZONTAL
-        LayoutInflater.from(context).inflate(R.layout.shp_scrollhmspicker, this)
 
         val res = resources
 
@@ -73,23 +73,14 @@ open class ScrollHmsPicker @JvmOverloads constructor(
         enable99Hours = ta.getBoolean(R.styleable.ScrollHmsPicker_shp_enable_99_hours, false)
         ta.recycle()
 
-        pickerHours = findViewById<NumberPickerView>(R.id.pickerHours).apply {
-            maxValue = 99
-        }
-        textHours = findViewById(R.id.textHours)
+        binding.pickerHours.maxValue = 99
         setHoursVisibility(showHours)
         set99Hours(enable99Hours)
 
-        pickerMinutes = findViewById<NumberPickerView>(R.id.pickerMinutes).apply {
-            maxValue = 59
-        }
-        textMinutes = findViewById(R.id.textMinutes)
+        binding.pickerMinutes.maxValue = 59
         setMinutesVisibility(showMinutes)
 
-        pickerSeconds = findViewById<NumberPickerView>(R.id.pickerSeconds).apply {
-            maxValue = 59
-        }
-        textSeconds = findViewById(R.id.textSeconds)
+        binding.pickerSeconds.maxValue = 59
         setSecondsVisibility(showSeconds)
 
         setSafeHours(hours)
@@ -97,7 +88,7 @@ open class ScrollHmsPicker @JvmOverloads constructor(
         setSafeSeconds(seconds)
         setAutoStep(autoStep)
 
-        arrayOf(pickerHours, pickerMinutes, pickerSeconds).forEach {
+        arrayOf(binding.pickerHours, binding.pickerMinutes, binding.pickerSeconds).forEach {
             it.setContentTextTypeface(Typeface.SANS_SERIF)
             it.setNormalTextColor(colorNormal)
             it.setSelectedTextColor(colorSelected)
@@ -113,7 +104,7 @@ open class ScrollHmsPicker @JvmOverloads constructor(
         val textMarginTop = ((res.getDimension(R.dimen.shp_text_size_selected_item)
                 - res.getDimension(R.dimen.shp_text_size_label)) / 2).toInt()
 
-        arrayOf(textHours, textMinutes, textSeconds).forEach { view ->
+        allTexts.forEach { view ->
             view.setTextColor(colorSelected)
             // align texts to the bottom of the selected text
             view.layoutParams = (view.layoutParams as LayoutParams).also {
@@ -127,7 +118,7 @@ open class ScrollHmsPicker @JvmOverloads constructor(
     }
 
     fun setColorIntNormal(@ColorInt color: Int) {
-        arrayOf(pickerHours, pickerMinutes, pickerSeconds).forEach {
+        arrayOf(binding.pickerHours, binding.pickerMinutes, binding.pickerSeconds).forEach {
             it.setNormalTextColor(color)
         }
     }
@@ -137,10 +128,10 @@ open class ScrollHmsPicker @JvmOverloads constructor(
     }
 
     fun setColorIntSelected(@ColorInt color: Int) {
-        arrayOf(pickerHours, pickerMinutes, pickerSeconds).forEach {
+        allPickers.forEach {
             it.setSelectedTextColor(color)
         }
-        arrayOf(textHours, textMinutes, textSeconds).forEach {
+        allTexts.forEach {
             it.setTextColor(color)
         }
     }
@@ -149,88 +140,86 @@ open class ScrollHmsPicker @JvmOverloads constructor(
         if (newValue != autoStep) {
             autoStep = newValue
             if (autoStep) {
-                pickerMinutes.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
-                    val hoursVal = pickerHours.value
+                binding.pickerMinutes.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
+                    val hoursVal = binding.pickerHours.value
                     if (oldVal == 59 && newVal == 0) {
-                        pickerHours.smoothScrollToValue((hoursVal + 1) % (if (enable99Hours) 100 else 24))
+                        binding.pickerHours.smoothScrollToValue((hoursVal + 1) % (if (enable99Hours) 100 else 24))
                     } else if (oldVal == 0 && newVal == 59) {
-                        pickerHours.smoothScrollToValue(if (hoursVal > 0) hoursVal - 1 else ((if (enable99Hours) 99 else 23)))
+                        binding.pickerHours.smoothScrollToValue(if (hoursVal > 0) hoursVal - 1 else ((if (enable99Hours) 99 else 23)))
                     }
                 }
-                pickerSeconds.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
-                    val minutesVal = pickerMinutes.value
+                binding.pickerSeconds.setOnValueChangeListenerInScrolling { _, oldVal, newVal ->
+                    val minutesVal = binding.pickerMinutes.value
                     if (oldVal == 59 && newVal == 0) {
-                        pickerMinutes.smoothScrollToValue((minutesVal + 1) % 60)
+                        binding.pickerMinutes.smoothScrollToValue((minutesVal + 1) % 60)
                     } else if (oldVal == 0 && newVal == 59) {
-                        pickerMinutes.smoothScrollToValue(if (minutesVal > 0) minutesVal - 1 else 59)
+                        binding.pickerMinutes.smoothScrollToValue(if (minutesVal > 0) minutesVal - 1 else 59)
                     }
                 }
             } else {
-                pickerMinutes.setOnValueChangeListenerInScrolling(null)
-                pickerSeconds.setOnValueChangeListenerInScrolling(null)
+                binding.pickerMinutes.setOnValueChangeListenerInScrolling(null)
+                binding.pickerSeconds.setOnValueChangeListenerInScrolling(null)
             }
         }
     }
 
     fun setHoursVisibility(show: Boolean) {
         val visibility = if (show) VISIBLE else GONE
-        pickerHours.visibility = visibility
-        textHours.visibility = visibility
+        binding.pickerHours.visibility = visibility
+        binding.textHours.visibility = visibility
     }
 
     fun setMinutesVisibility(show: Boolean) {
         val visibility = if (show) VISIBLE else GONE
-        pickerMinutes.visibility = visibility
-        textMinutes.visibility = visibility
+        binding.pickerMinutes.visibility = visibility
+        binding.textMinutes.visibility = visibility
     }
 
     fun setSecondsVisibility(show: Boolean) {
         val visibility = if (show) VISIBLE else GONE
-        pickerSeconds.visibility = visibility
-        textSeconds.visibility = visibility
+        binding.pickerSeconds.visibility = visibility
+        binding.textSeconds.visibility = visibility
     }
 
     fun set99Hours(enable: Boolean) {
         enable99Hours = enable
-        pickerHours.setMinAndMaxShowIndex(0, if (enable) 99 else 23)
+        binding.pickerHours.setMinAndMaxShowIndex(0, if (enable) 99 else 23)
     }
 
     fun setTypeface(newTypeface: Typeface) {
-        pickerHours.setContentTextTypeface(newTypeface)
-        pickerHours.setHintTextTypeface(newTypeface)
-        textHours.typeface = newTypeface
+        binding.pickerHours.setContentTextTypeface(newTypeface)
+        binding.pickerHours.setHintTextTypeface(newTypeface)
+        binding.textHours.typeface = newTypeface
 
-        pickerMinutes.setContentTextTypeface(newTypeface)
-        pickerMinutes.setHintTextTypeface(newTypeface)
-        textMinutes.typeface = newTypeface
+        binding.pickerMinutes.setContentTextTypeface(newTypeface)
+        binding.pickerMinutes.setHintTextTypeface(newTypeface)
+        binding.textMinutes.typeface = newTypeface
 
-        pickerSeconds.setContentTextTypeface(newTypeface)
-        pickerSeconds.setHintTextTypeface(newTypeface)
-        textSeconds.typeface = newTypeface
+        binding.pickerSeconds.setContentTextTypeface(newTypeface)
+        binding.pickerSeconds.setHintTextTypeface(newTypeface)
+        binding.textSeconds.typeface = newTypeface
     }
 
     fun getTypeface(): Typeface {
-        return textHours.typeface
+        return binding.textHours.typeface
     }
 
     private fun setSafeHours(hours: Int) {
-        if (hours in 0..(if (enable99Hours) 99 else 23)) scrollToValue(pickerHours, hours)
+        if (hours in 0..(if (enable99Hours) 99 else 23)) {
+            binding.pickerHours.value = hours
+        }
     }
 
     private fun setSafeMinutes(minutes: Int) {
-        if (minutes in 0..59) scrollToValue(pickerMinutes, minutes)
+        if (minutes in 0..59) {
+            binding.pickerMinutes.value = minutes
+        }
     }
 
     private fun setSafeSeconds(seconds: Int) {
-        if (seconds in 0..59) scrollToValue(pickerSeconds, seconds)
-    }
-
-    private fun scrollToValue(picker: NumberPickerView, value: Int) {
-//        if (animateToValue) {
-//            post { picker.smoothScrollToValue(value) }
-//        } else {
-        picker.value = value
-//        }
+        if (seconds in 0..59) {
+            binding.pickerSeconds.value = seconds
+        }
     }
 
     override fun onSaveInstanceState(): Parcelable {
@@ -270,9 +259,9 @@ open class ScrollHmsPicker @JvmOverloads constructor(
             }
         }
 
-        override fun writeToParcel(out: Parcel?, flags: Int) {
+        override fun writeToParcel(out: Parcel, flags: Int) {
             super.writeToParcel(out, flags)
-            out?.run {
+            out.run {
                 writeInt(hours)
                 writeInt(minutes)
                 writeInt(seconds)
