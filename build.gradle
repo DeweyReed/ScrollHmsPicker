@@ -29,6 +29,6 @@ ext {
 
     appcompat_version = '1.7.0'
 
-    version_code = 203
-    version_name = '2.0.3'
+    version_code = 210
+    version_name = '2.1.0'
 }
