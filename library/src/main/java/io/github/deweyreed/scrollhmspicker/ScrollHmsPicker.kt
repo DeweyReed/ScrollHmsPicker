@@ -88,7 +88,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
         setSafeSeconds(seconds)
         setAutoStep(autoStep)
 
-        arrayOf(binding.pickerHours, binding.pickerMinutes, binding.pickerSeconds).forEach {
+        allPickers.forEach {
             it.setContentTextTypeface(Typeface.SANS_SERIF)
             it.setNormalTextColor(colorNormal)
             it.setSelectedTextColor(colorSelected)
@@ -118,7 +118,7 @@ class ScrollHmsPicker @JvmOverloads constructor(
     }
 
     fun setColorIntNormal(@ColorInt color: Int) {
-        arrayOf(binding.pickerHours, binding.pickerMinutes, binding.pickerSeconds).forEach {
+        allPickers.forEach {
             it.setNormalTextColor(color)
         }
     }
