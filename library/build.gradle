@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
     namespace "io.github.deweyreed.scrollhmspicker"
@@ -10,13 +11,39 @@ android {
         versionCode rootProject.ext.version_code
         versionName rootProject.ext.version_name
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
     resourcePrefix 'shp_'
     buildFeatures {
         viewBinding = true
+    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
     }
 }
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation 'com.github.Carbs0126:NumberPickerView:642c376'
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "com.github.DeweyReed"
+            artifactId = 'ScrollHmsPicker'
+            version = rootProject.ext.version_name
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }
